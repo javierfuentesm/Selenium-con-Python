@@ -4,10 +4,10 @@ from selenium import webdriver
 
 
 class HelloWorld(unittest.TestCase):
-
-    def setUp(self):
-        self.driver = webdriver.Chrome(executable_path='./chromedriver')
-        driver = self.driver
+    @classmethod
+    def setUpClass(cls):
+        cls.driver = webdriver.Chrome(executable_path='./chromedriver')
+        driver = cls.driver
         driver.implicitly_wait(10)
 
     def test_hello_world(self):
@@ -16,9 +16,9 @@ class HelloWorld(unittest.TestCase):
 
     def test_visit_wikipedia(self):
         self.driver.get('https://www.wikipedia.org')
-
-    def tearDown(self):
-        self.driver.quit()
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
 
 
 if __name__ == "__main__":
